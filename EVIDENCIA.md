@@ -6,15 +6,12 @@
 
 Salida de `docker ps` con los contenedores `citas_mysql` y `citas_adminer` corriendo:
 
-```
-(pegar aqui la salida de: docker ps)
-```
+![alt text](image.png)
 
 Captura de pantalla de Adminer (`http://localhost:8081`) mostrando las tablas `pacientes`, `doctores` y `citas` con datos:
 
-```
-(insertar captura de pantalla)
-```
+![alt text](image-4.png)
+
 
 ## 2. API REST (ejemplos con curl)
 
@@ -28,9 +25,7 @@ curl -s -X POST http://localhost:3000/api/citas \
 
 Respuesta:
 
-```
-(pegar respuesta JSON, status 201)
-```
+![alt text](image-5.png)
 
 ### Intentar crear una cita en conflicto de horario (debe responder 409)
 
@@ -42,9 +37,7 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST http://localhost:3000/api/citas
 
 Respuesta esperada: `409`
 
-```
-(pegar respuesta)
-```
+![alt text](image-6.png)
 
 ### Listar citas filtradas por doctor (GET /api/citas?doctor_id=1)
 
@@ -52,9 +45,7 @@ Respuesta esperada: `409`
 curl -s "http://localhost:3000/api/citas?doctor_id=1"
 ```
 
-```
-(pegar respuesta JSON)
-```
+![alt text](image-7.png)
 
 ### Cambiar estado de una cita (PATCH /api/citas/:id/estado)
 
@@ -64,9 +55,7 @@ curl -s -X PATCH http://localhost:3000/api/citas/1/estado \
   -d '{"estado":"confirmada"}'
 ```
 
-```
-(pegar respuesta JSON)
-```
+![alt text](image-2.png)
 
 ## 3. Interfaz FullCalendar
 
@@ -78,17 +67,15 @@ Capturas de pantalla mostrando:
 - [ ] Reprogramacion de una cita con drag & drop (antes/despues)
 - [ ] Cambio de estado de una cita desde el detalle
 
-```
-(insertar capturas de pantalla)
-```
+![alt text](image-1.png)
+![alt text](image-9.png)
+![alt text](image-10.png)
 
 ## 4. Flujo Git
 
 Salida de `git log --graph --all --oneline`:
 
-```
-(pegar aqui la salida del comando)
-```
+![alt text](image-11.png)
 
 Lista de Pull Requests fusionados a `main`:
 
