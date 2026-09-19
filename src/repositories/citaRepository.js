@@ -64,4 +64,26 @@ async function updateHorario(id, { inicio, fin, motivo }) {
     return findById(id);
 }
 
-module.exports = { findAll, findById, create, updateHorario };
+async function updateEstado(id, estado) {
+    await db.query('UPDATE citas SET estado = ? WHERE id = ?', [estado, id]);
+    return findById(id);
+}
+
+// Busca citas activas (no canceladas) del mismo doctor cuyo horario se solape
+// con [inicio, fin). excludeId permite omitir la propia cita al reprogramar.
+async function findSolapadas({ doctorId, inicio, fin, excludeId }) {
+    const params = [doctorId, fin, inicio];
+    let sql = `SELECT id FROM citas
+               WHERE doctor_id = ?
+                 AND estado <> 'cancelada'
+                 AND inicio < ?
+                 AND fin > ?`;
+    if (excludeId) {
+        sql += ' AND id <> ?';
+        params.push(excludeId);
+    }
+    const [rows] = await db.query(sql, params);
+    return rows;
+}
+
+module.exports = { findAll, findById, create, updateHorario, updateEstado, findSolapadas };
