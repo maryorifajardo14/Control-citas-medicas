@@ -39,4 +39,14 @@ async function reprogramar(req, res, next) {
     }
 }
 
-module.exports = { listar, obtener, crear, reprogramar };
+async function cambiarEstado(req, res, next) {
+    try {
+        const { estado } = req.body;
+        const cita = await citaService.cambiarEstado(req.params.id, estado);
+        res.json(cita);
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports = { listar, obtener, crear, reprogramar, cambiarEstado };
