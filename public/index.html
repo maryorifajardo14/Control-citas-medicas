@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Citas Medicas</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+    <h1>Control de Citas Medicas</h1>
+    <div class="filtros">
+        <label for="filtro-doctor">Doctor:</label>
+        <select id="filtro-doctor">
+            <option value="">Todos</option>
+        </select>
+        <button id="btn-nueva-cita" type="button">+ Nueva cita</button>
+    </div>
+</header>
+
+<main>
+    <div class="leyenda">
+        <span class="chip estado-pendiente">Pendiente</span>
+        <span class="chip estado-confirmada">Confirmada</span>
+        <span class="chip estado-cancelada">Cancelada</span>
+        <span class="chip estado-atendida">Atendida</span>
+    </div>
+    <div id="calendar"></div>
+</main>
+
+<!-- Modal: crear cita -->
+<div id="modal-crear" class="modal" hidden>
+    <div class="modal-contenido">
+        <h2>Nueva cita</h2>
+        <form id="form-crear-cita">
+            <label>Paciente
+                <select id="crear-paciente" required></select>
+            </label>
+            <label>Doctor
+                <select id="crear-doctor" required></select>
+            </label>
+            <label>Inicio
+                <input type="datetime-local" id="crear-inicio" required>
+            </label>
+            <label>Fin
+                <input type="datetime-local" id="crear-fin" required>
+            </label>
+            <label>Motivo
+                <textarea id="crear-motivo" required maxlength="255"></textarea>
+            </label>
+            <p class="mensaje-error" id="crear-error" hidden></p>
+            <div class="acciones-modal">
+                <button type="button" class="btn-secundario" data-cerrar-modal="modal-crear">Cancelar</button>
+                <button type="submit" class="btn-primario">Guardar cita</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: detalle / cambio de estado -->
+<div id="modal-detalle" class="modal" hidden>
+    <div class="modal-contenido">
+        <h2>Detalle de la cita</h2>
+        <dl class="detalle-lista">
+            <dt>Paciente</dt><dd id="detalle-paciente"></dd>
+            <dt>Doctor</dt><dd id="detalle-doctor"></dd>
+            <dt>Horario</dt><dd id="detalle-horario"></dd>
+            <dt>Motivo</dt><dd id="detalle-motivo"></dd>
+            <dt>Estado</dt><dd id="detalle-estado"></dd>
+        </dl>
+        <p class="mensaje-error" id="detalle-error" hidden></p>
+        <div class="acciones-modal" id="detalle-acciones-estado"></div>
+        <div class="acciones-modal">
+            <button type="button" class="btn-secundario" data-cerrar-modal="modal-detalle">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
