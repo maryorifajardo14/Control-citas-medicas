@@ -7,5 +7,6 @@ router.get('/', citasController.listar);
 router.post('/', citasController.crear);
 router.get('/:id', citasController.obtener);
 router.put('/:id', citasController.reprogramar);
+router.patch('/:id/estado', citasController.cambiarEstado);
 
 module.exports = router;
